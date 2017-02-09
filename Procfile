@@ -1,0 +1,1 @@
+web: gunicorn fantasybot.wsgi --log-file -

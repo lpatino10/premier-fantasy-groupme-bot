@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-import functions
+from home.functions import get_total_score
 
 @csrf_exempt
 def index(request):
@@ -17,7 +17,7 @@ def index(request):
                     player_name = attachment['user_ids'][0]
                     break
             
-            score = functions.get_total_score(player_name)
+            score = get_total_score(player_name)
             return_message = 'Your current fantasy score is: {}'.format(score)
             requests.post('https://api.groupme.com/v3/bots/post', data = {'bot_id': 'cb7fdea6c4bbcb0fea5ef5a5d8', 'text': return_message})
     return render(request, 'home/index.html')
