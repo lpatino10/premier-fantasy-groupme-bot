@@ -1,6 +1,7 @@
 import requests
 
-username_dict = {'poonslayer': 'McCoy Patino'}
+username_dict = {'poonslayer': 'McCoy Patino',
+  'Craig Casto': 'Craig C'}
 
 #def get_current_standings():
 
