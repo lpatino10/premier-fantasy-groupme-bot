@@ -1,3 +1,5 @@
+import requests
+
 #def get_current_standings():
 
 def get_total_score(name):
