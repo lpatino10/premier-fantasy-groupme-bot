@@ -1,5 +1,8 @@
 import requests
+import logging
 from watson_developer_cloud import NaturalLanguageClassifierV1
+
+logger = logging.getLogger(__name__)
 
 fantasy_url = 'https://fantasy.premierleague.com/drf/leagues-classic-standings/508077'
 base_url = 'https://api.groupme.com/v3'
@@ -64,6 +67,13 @@ def choose_response(message_json):
         password='MHlzYl0uGbHT')
 
     classification_response = natural_language_classifier.classify(classifier_id, message_text)
+
+    # logging to see how the classifier's working
+    logger.info('Input: {}'.format(message_text))
+    for c in classification_response['classes']:
+        logger.info('Class: {}  Confidence: {}'.format(c['class_name'], c['confidence']))
+    logger.info('')
+
     top_class = classification_response['classes'][0]
     if top_class['confidence'] < confidence_limit:
         return response
