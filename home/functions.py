@@ -18,22 +18,39 @@ username_dict = {'poonslayer': 'McCoy Patino',
   'Craig Casto': 'Craig C'}
 
 def get_current_standings():
-    return not_yet_functioning_reponse
+    standings = requests.get(fantasy_url).json()
+    place = 1
+    standings_list = []
+    for player in standings['standings']['results']:
+        player_name = player['player_name']
+        team_name = player['entry_name']
+        score = player['total']
+        standings_list.append('{}. {} ({}) - {}\n'.format(place, team_name, player_name, score))
+        place = place + 1
+    reply = ''.join(standings_list)
+    return reply
 
 def get_total_score(name):
-    name = convert_name(name)
     standings = requests.get(fantasy_url).json()
     score = 0
     for player in standings['standings']['results']:
         if player['player_name'] == name:
             score = player['total']
-    return score
+    reply = "{}'s current score is {}.".format(name, score)
+    return reply
 
 def get_current_week_score(name):
     return not_yet_functioning_reponse
 
 def get_current_position(name):
-    return not_yet_functioning_reponse
+    standings = requests.get(fantasy_url).json()
+    place = 1
+    for player in standings['standings']['results']:
+        if player['player_name'] == name:
+            break
+        place = place + 1
+    reply = "{} is currently in position {}.".format(name, place)
+    return reply
 
 def convert_name(name):
     new_name = name
