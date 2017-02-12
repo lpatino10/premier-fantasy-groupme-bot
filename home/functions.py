@@ -70,8 +70,11 @@ def choose_response(message_json):
 
     # logging to see how the classifier's working
     logger.info('Input: {}'.format(message_text))
+    print('Input: {}'.format(message_text))
     for c in classification_response['classes']:
+        print('Class: {}  Confidence: {}'.format(c['class_name'], c['confidence']))
         logger.info('Class: {}  Confidence: {}'.format(c['class_name'], c['confidence']))
+    print('')
     logger.info('')
 
     top_class = classification_response['classes'][0]
