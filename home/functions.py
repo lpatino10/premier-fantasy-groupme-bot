@@ -8,6 +8,7 @@ fantasy_url = 'https://fantasy.premierleague.com/drf/leagues-classic-standings/5
 base_url = 'https://api.groupme.com/v3'
 group_url = '/groups/'
 group_id = '17077713'
+token = '?token=jU44oU4exOUdK3Fr7pkvbnP3Z7NlVilNNQY5dqkR'
 
 classifier_id = 'f5b42fx173-nlc-3572'
 confidence_limit = 0.98
@@ -42,7 +43,8 @@ def convert_name(name):
 
 def get_mentioned_name(user_id):
     name = ''
-    group_info = requests.get(base_url + group_url + group_id).json()
+    group_info = requests.get(base_url + group_url + group_id + token).json()
+    print(group_info)
     for member in group_info['members']:
         if member['user_id'] == user_id:
             name = member['nickname']
@@ -79,6 +81,7 @@ def choose_response(message_json):
         return response
 
     name = get_message_subject(message_json)
+    print('Subject: {}'.format(name))
 
     top_class_name = top_class['class_name']
     if top_class_name == 'standings':
