@@ -45,7 +45,7 @@ def get_mentioned_name(user_id):
     name = ''
     group_info = requests.get(base_url + group_url + group_id + token).json()
     print(group_info)
-    for member in group_info['members']:
+    for member in group_info['response']['members']:
         if member['user_id'] == user_id:
             name = member['nickname']
     return convert_name(name)
