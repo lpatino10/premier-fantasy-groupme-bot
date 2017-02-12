@@ -10,7 +10,7 @@ group_url = '/groups/'
 group_id = '17077713'
 
 classifier_id = 'f5b42fx173-nlc-3572'
-confidence_limit = 0.5
+confidence_limit = 0.98
 
 not_yet_functioning_reponse = "I can't help you with this yet, but I should be able to soon!"
 username_dict = {'poonslayer': 'McCoy Patino',
@@ -69,13 +69,10 @@ def choose_response(message_json):
     classification_response = natural_language_classifier.classify(classifier_id, message_text)
 
     # logging to see how the classifier's working
-    logger.info('Input: {}'.format(message_text))
     print('Input: {}'.format(message_text))
     for c in classification_response['classes']:
         print('Class: {}  Confidence: {}'.format(c['class_name'], c['confidence']))
-        logger.info('Class: {}  Confidence: {}'.format(c['class_name'], c['confidence']))
     print('')
-    logger.info('')
 
     top_class = classification_response['classes'][0]
     if top_class['confidence'] < confidence_limit:

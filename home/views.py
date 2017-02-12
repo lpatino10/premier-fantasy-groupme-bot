@@ -13,7 +13,6 @@ bot_id = 'cb7fdea6c4bbcb0fea5ef5a5d8'
 @csrf_exempt
 def index(request):
     if request.method == 'POST':
-        print(request.body)
         message_json = json.loads(request.body)
 
         if message_json['sender_type'] == 'user':
