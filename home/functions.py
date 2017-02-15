@@ -11,7 +11,7 @@ group_id = '17077713'
 token = '?token=jU44oU4exOUdK3Fr7pkvbnP3Z7NlVilNNQY5dqkR'
 
 classifier_id = 'f5b42fx173-nlc-3572'
-confidence_limit = 0.94
+confidence_limit = 0.98
 
 not_yet_functioning_reponse = "I can't help you with this yet, but I should be able to soon!"
 username_dict = {'poonslayer': 'McCoy Patino',
